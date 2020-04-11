@@ -84,7 +84,8 @@ class EmailsInput {
             let spanEl = this.doc.createElement("span");
             let imgEl = this.doc.createElement("img");
 
-            chipDivEl.classList.add(isValid ? "chip" : "chip-invalid");
+            chipDivEl.classList.add("chip");
+            chipDivEl.classList.add(isValid ? "chip-valid" : "chip-invalid");
             spanEl.textContent = email;
             imgEl.src = "./components/images/remove.svg";
             imgEl.classList.add("closed-img");
@@ -108,10 +109,30 @@ class EmailsInput {
         }
     };
 
+    deleteAllChips = () => {
+        let chipList = this.blockEmail.getElementsByClassName("chip");
+        let chipListLength = chipList.length;
+        for (let i = 0; i < chipListLength; i++) {
+            this.deleteChip(chipList[0]);
+        }
+        this.emailList = [];
+    };
+
+    //API
+
     getEmails = () => {
         return this.emailList;
     };
 
+    setNewEmailList = (emailList) => {
+        if (emailList && Array.isArray(emailList)) {
+           this.deleteAllChips();
+            this.emailList = emailList;
+            this.emailList.forEach(item => {
+                this.addChip(item);
+            });
+        }
+    };
 };
 
 export {EmailsInput};

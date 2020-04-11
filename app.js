@@ -10,10 +10,11 @@ let options = {
 };
 let btn1 = document.getElementById('addEmail');
 let btn2 = document.getElementById('showCountEmail');
+let btn3 = document.getElementById('addNewEmailList');
 let emailsInput = new EmailsInput(inputContainerNode, options);
 
 const getCountEmails = () => {
-    console.log(emailsInput.getEmails().length);
+    alert(emailsInput.getEmails().length);
 };
 
 const addRandomEmail = () => {
@@ -21,5 +22,11 @@ const addRandomEmail = () => {
     emailsInput.addChip(email);
 };
 
+const addNewEmailList = () => {
+    let emailList = ["aaaa@aaa.aaa"];
+    emailsInput.setNewEmailList(emailList);
+};
+
 btn1.onclick = addRandomEmail;
 btn2.onclick = getCountEmails;
+btn3.onclick = addNewEmailList;
