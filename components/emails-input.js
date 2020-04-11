@@ -22,10 +22,13 @@ class EmailsInput {
                 "</div>" +
             "</div>";
         parentNode.appendChild(this.headElem);
+
         this.blockEmail = this.headElem.getElementsByClassName("insert-block")[0];
+
         this.input = this.blockEmail.getElementsByClassName("input-field")[0];
         this.input.onkeyup = this.handleInputKeyUp;
         this.input.onblur = this.handleInputBlur;
+        this.input.oninput = this.handleInputOnInput;
 
         this.setChipList(options.emailList);
     };
@@ -36,51 +39,70 @@ class EmailsInput {
         });
     };
 
+    // Добавляем емейл при нажатии клавишь "Enter" и ","
     handleInputKeyUp = (event) => {
         let email = event.currentTarget.value;
-        // чтобы нельзя было добавлять пустой чип
-        // даём
+
+        // убираем запятую
         if (event.key === ",") {
             email = email.replace(',', '');
         }
+
         if (email.trim() !== "" && (event.key === "Enter" || event.key === ",")) {
             this.addChip(email);
-            //чистим поле
             event.currentTarget.value = "";
         }
     };
 
+    // Добавляем емейл при потере фокуса
     handleInputBlur = (event) => {
         if (event.currentTarget.value.trim() !== "") {
             this.addChip(event.currentTarget.value);
-            //чистим поле
             event.currentTarget.value = "";
         }
     };
 
-    addChip = (email) => {
-        let isValid = emailPattern.test(email);
-        let chipDivEl = this.doc.createElement("div");
-        let spanEl = this.doc.createElement("span");
-        let imgEl = this.doc.createElement("img");
+    //Добавляем емейлы при вставке
+    handleInputOnInput = (event) => {
+        if (event.inputType === "insertFromPaste" && event.currentTarget.value.trim() !== "") {
+            let emailsList = event.currentTarget.value.split(',');
 
-        chipDivEl.classList.add(isValid ? "chip" : "chip-invalid");
-        spanEl.textContent = email;
-        imgEl.src = "./components/images/remove.svg";
-        imgEl.classList.add("closed-img");
-        imgEl.onclick = () => this.deleteChip(chipDivEl, email);
+            emailsList.forEach(item => {
+                this.addChip(item)
+            });
 
-        chipDivEl.appendChild(spanEl);
-        chipDivEl.appendChild(imgEl);
+            event.currentTarget.value = "";
+        }
+    };
 
-        this.blockEmail.insertBefore(chipDivEl, this.input);
+    addChip = (value) => {
+        let email = value.trim();
 
-        this.emailList.push(email);
+        if (email) {
+            let isValid = emailPattern.test(email);
+            let chipDivEl = this.doc.createElement("div");
+            let spanEl = this.doc.createElement("span");
+            let imgEl = this.doc.createElement("img");
+
+            chipDivEl.classList.add(isValid ? "chip" : "chip-invalid");
+            spanEl.textContent = email;
+            imgEl.src = "./components/images/remove.svg";
+            imgEl.classList.add("closed-img");
+            imgEl.onclick = () => this.deleteChip(chipDivEl, email);
+
+            chipDivEl.appendChild(spanEl);
+            chipDivEl.appendChild(imgEl);
+
+            this.blockEmail.insertBefore(chipDivEl, this.input);
+
+            this.emailList.push(email);
+        }
     };
 
     deleteChip = (chipElem, email) => {
         chipElem.parentNode.removeChild(chipElem);
         let indexEmail = this.emailList.indexOf(email);
+
         if (indexEmail !== -1) {
             this.emailList.splice(indexEmail, 1);
         }
@@ -89,10 +111,6 @@ class EmailsInput {
     getEmails = () => {
         return this.emailList;
     };
-
-   /* checkValid = (email) => {
-        return emailPattern.test(email);
-    };*/
 
 };
 
