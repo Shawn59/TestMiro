@@ -1,0 +1,22 @@
+.main-block {
+    width: 540px;
+    background: #FFFFFF;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.block-content {
+    padding: 50px 24px;
+    background: #F8F8F7;
+    border-radius: 8px 8px 0px 0px;
+    height: 204px;
+}
+
+.block-footer {
+    height: 96px;
+}
+
+.emails-input-block {
+    height: 96px;
+    margin: 24px 0;
+}
