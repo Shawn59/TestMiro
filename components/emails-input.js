@@ -27,11 +27,10 @@ class EmailsInput {
         this.input.placeholder = 'add more emails...';
         this.input.onkeyup = this.handleInputKeyUp;
         this.input.onblur = this.handleInputBlur;
-        this.input.oninput = this.handleInputOnInput;
+        this.input.onpaste = this.handleInputOnPaste;
 
         this.blockEmail.appendChild(this.input);
         parentNode.appendChild(this.blockEmail);
-        console.log('1111');
 
         this.setChipList(options.emailList);
     };
@@ -69,16 +68,24 @@ class EmailsInput {
         }
     };
 
-    //Добавляем емейлы при вставке
-    handleInputOnInput = (event) => {
-        if (event.inputType === "insertFromPaste" && event.currentTarget.value.trim() !== "") {
-            let emailsList = event.currentTarget.value.split(',');
+    handleInputOnPaste = (event) => {
+        // хук для осла
+        let bufferValue = event.clipboardData ?
+            event.clipboardData.getData('text/plain')
+            : window.clipboardData.getData('text');
+
+        let value = this.input.value + bufferValue.trim();
+        if (value) {
+            let emailsList = value.split(',');
 
             emailsList.forEach(item => {
                 this.addChip(item)
             });
 
-            event.currentTarget.value = "";
+            setTimeout(() => {
+                this.input.value = "";
+            }, 0);
+
         }
     };
 
