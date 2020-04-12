@@ -7,6 +7,7 @@ let options = {
         "sdfsdf@dfdf",
         "fdsgfdlfghfg@dfds.df"
     ],
+    // подписки на события изменения списка емейлов
     onAddChip: handleAddChip,
     onDeleteChip: handleDeleteChip
 };
