@@ -39,6 +39,8 @@
 
 .input-field {
   margin-left: 8px;
+  border: none;
+  height: 24px;
 }
 
 .closed-img {

@@ -7,11 +7,17 @@ class EmailsInput {
     input = '';
     emailList = [];
 
+    //колбеки
+    onAddChipCallback = '';
+    onDeleteChipCallback = '';
+
     constructor(parentNode, options) {
         this.init(parentNode, options);
     }
 
     init = (parentNode, options = {}) => {
+        this.onAddChipCallback = options.onAddChip;
+        this.onDeleteChipCallback = options.onDeleteChip;
         //клонируем
         this.headElem = this.doc.createElement("div");
         this.headElem.classList.add("insert-email");
@@ -97,6 +103,8 @@ class EmailsInput {
             this.blockEmail.insertBefore(chipDivEl, this.input);
 
             this.emailList.push(email);
+
+            this.onAddChip(chipDivEl, email);
         }
     };
 
@@ -107,33 +115,45 @@ class EmailsInput {
         if (indexEmail !== -1) {
             this.emailList.splice(indexEmail, 1);
         }
+
+        this.onDeleteChip(email);
     };
 
     deleteAllChips = () => {
         let chipList = this.blockEmail.getElementsByClassName("chip");
         let chipListLength = chipList.length;
         for (let i = 0; i < chipListLength; i++) {
-            this.deleteChip(chipList[0]);
+            this.deleteChip(chipList[0], chipList[0].textContent);
         }
-        this.emailList = [];
     };
 
     //API
 
-    getEmails = () => {
+    onGetEmails = () => {
         return this.emailList;
     };
 
-    setNewEmailList = (emailList) => {
+    onSetNewEmailList = (emailList) => {
         if (emailList && Array.isArray(emailList)) {
            this.deleteAllChips();
-            this.emailList = emailList;
-            this.emailList.forEach(item => {
+            emailList.forEach(item => {
                 this.addChip(item);
             });
         }
     };
-};
+
+    onAddChip = (chipElem, email) => {
+        if (this.onAddChipCallback && typeof(this.onAddChipCallback) === "function") {
+            this.onAddChipCallback(chipElem, email);
+        }
+    };
+
+    onDeleteChip = (email) => {
+        if (this.onDeleteChipCallback && typeof(this.onDeleteChipCallback) === "function") {
+            this.onDeleteChipCallback(email);
+        }
+    };
+}
 
 export {EmailsInput};
 

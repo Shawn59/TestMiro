@@ -20,3 +20,16 @@
     height: 96px;
     margin: 24px 0;
 }
+
+.operation-button {
+    background: #4262FF;
+    border-radius: 6px;
+    padding: 6px 16px;
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    border: none;
+    cursor: pointer;
+}
