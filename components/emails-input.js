@@ -143,14 +143,23 @@ class EmailsInput {
     };
 
     onAddChip = (chipElem, email) => {
-        if (this.onAddChipCallback && typeof(this.onAddChipCallback) === "function") {
-            this.onAddChipCallback(chipElem, email);
+        if (this.onAddChipCallback) {
+            if (typeof(this.onAddChipCallback) === "function") {
+                this.onAddChipCallback(chipElem, email);
+            } else {
+                // не стал выкидывать исключение, чтобы не завершать выполнение скрипта
+                console.error("onAddChipCallback - колбек должен быть функцией");
+            }
         }
     };
 
     onDeleteChip = (email) => {
-        if (this.onDeleteChipCallback && typeof(this.onDeleteChipCallback) === "function") {
-            this.onDeleteChipCallback(email);
+        if (this.onDeleteChipCallback) {
+            if (typeof(this.onDeleteChipCallback) === "function") {
+                this.onDeleteChipCallback(email);
+            } else {
+                console.error("onAddChipCallback - колбек должен быть функцией");
+            }
         }
     };
 }

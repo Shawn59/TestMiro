@@ -8,7 +8,7 @@ let options = {
         "fdsgfdlfghfg@dfds.df"
     ],
     onAddChip: handleAddChip,
-    onDeleteChip: handleDeleteChip
+    onDeleteChip: 'handleDeleteChip'
 };
 let btn1 = document.getElementById('addEmail');
 let btn2 = document.getElementById('showCountEmail');
