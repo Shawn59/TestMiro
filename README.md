@@ -23,8 +23,8 @@
 let emailsInput = new EmailsInput(inputContainerNode, options);
 ```
 ### Где:
-- inputContainerNode - это узел DOM, в который необходимо поместить компонент;
-- options - входные параметры для компонента.
+- `inputContainerNode` - это узел DOM, в который необходимо поместить компонент;
+- `options` - входные параметры для компонента.
 
 ### API
 - `onGetEmails` - возвращает массив с почтовыми ящиками;
