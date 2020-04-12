@@ -1,7 +1,6 @@
 .insert-email {
   width: 100%;
   height: 100%;
-  border: 1px solid black;
 }
 
 .error-block {
@@ -13,15 +12,20 @@
   width: max-content;
   margin-left: 8px;
   margin-bottom: 4px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  height: 24px;
 }
 
 .chip-invalid {
-  padding: 3px 0;
+  height: 23px;
   border-bottom: 1px dashed red;
 }
 
 .chip-valid {
-  padding: 3px 10px;
+  padding: 0 10px;
   background: rgba(102, 153, 255, 0.2);
   border-radius: 100px;
 }
@@ -35,6 +39,8 @@
   flex-wrap: wrap;
   padding: 4px 0;
   overflow: auto;
+  height: 100%;
+  align-content: start;
 }
 
 .input-field {
@@ -46,4 +52,8 @@
 .closed-img {
   margin-left: 8px;
   cursor: pointer;
+}
+
+#emails-input {
+  height: 100%;
 }

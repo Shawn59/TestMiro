@@ -1,24 +1,43 @@
+@font-face {
+    font-family: OpenSans;
+    src: url(fonts/OpenSans-Regular.ttf);
+}
+
 .main-block {
+    font-family: OpenSans;
     width: 540px;
     background: #FFFFFF;
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
+    color: #050038;
+}
+
+.emails-title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 27px;
+    padding-top: 32px;
 }
 
 .block-content {
-    padding: 50px 24px;
+    padding: 0 50px;
     background: #F8F8F7;
     border-radius: 8px 8px 0px 0px;
     height: 204px;
+    overflow: auto;
 }
 
 .block-footer {
     height: 96px;
+    padding: 0 50px;
+    overflow: auto;
 }
 
 .emails-input-block {
     height: 96px;
-    margin: 24px 0;
+    margin-top: 24px;
+    margin-bottom: 24px;
 }
 
 .operation-button {
@@ -32,4 +51,6 @@
     line-height: 24px;
     border: none;
     cursor: pointer;
+    font-family: OpenSans;
+    margin: 24px 16px 0 0;
 }

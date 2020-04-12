@@ -2,7 +2,6 @@ const emailPattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})
 
 class EmailsInput {
     doc = document;
-    headElem = '';
     blockEmail = ''; // сюда емейлы добавляем
     input = '';
     emailList = [];
@@ -18,23 +17,20 @@ class EmailsInput {
     init = (parentNode, options = {}) => {
         this.onAddChipCallback = options.onAddChip;
         this.onDeleteChipCallback = options.onDeleteChip;
-        //клонируем
-        this.headElem = this.doc.createElement("div");
-        this.headElem.classList.add("insert-email");
-        this.headElem.innerHTML =
-            "<div class='error-block'>" +
-                "<div class='insert-block'>" +
-                    "<input type='text' class='input-field' placeholder='add more emails...'>" +
-                "</div>" +
-            "</div>";
-        parentNode.appendChild(this.headElem);
 
-        this.blockEmail = this.headElem.getElementsByClassName("insert-block")[0];
+        this.blockEmail = this.doc.createElement("div");
+        this.blockEmail.classList.add("insert-block");
+        parentNode.appendChild(this.blockEmail);
 
-        this.input = this.blockEmail.getElementsByClassName("input-field")[0];
+        this.input = this.doc.createElement("input");
+        this.input.type = "text";
+        this.input.classList.add("input-field");
+        this.input.placeholder = 'add more emails...';
         this.input.onkeyup = this.handleInputKeyUp;
         this.input.onblur = this.handleInputBlur;
         this.input.oninput = this.handleInputOnInput;
+
+        this.blockEmail.appendChild(this.input);
 
         this.setChipList(options.emailList);
     };
