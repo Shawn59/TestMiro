@@ -40,7 +40,7 @@
   padding: 4px 0;
   overflow: auto;
   height: 100%;
-  align-content: start;
+  align-content: flex-start;
 }
 
 .input-field {
