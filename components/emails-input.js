@@ -20,7 +20,6 @@ class EmailsInput {
 
         this.blockEmail = this.doc.createElement("div");
         this.blockEmail.classList.add("insert-block");
-        parentNode.appendChild(this.blockEmail);
 
         this.input = this.doc.createElement("input");
         this.input.type = "text";
@@ -31,6 +30,8 @@ class EmailsInput {
         this.input.oninput = this.handleInputOnInput;
 
         this.blockEmail.appendChild(this.input);
+        parentNode.appendChild(this.blockEmail);
+        console.log('1111');
 
         this.setChipList(options.emailList);
     };
