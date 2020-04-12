@@ -35,9 +35,9 @@ function addNewEmailList () {
 };
 
 function handleAddChip (chipEl, email) {
-    console.log('add - ' + email);
+    //console.log('add - ' + email);
 };
 
 function handleDeleteChip (email) {
-    console.log('del - ' + email);
+    //console.log('del - ' + email);
 };

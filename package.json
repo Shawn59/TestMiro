@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Cool crm",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack-dev-server --config webpack_dev.js --color --profile",
-    "test": "webpack-dev-server --color --profile"
+    "start": "webpack-dev-server --config webpack_dev.js --color --profile"
   },
   "repository": {
     "type": "git",
