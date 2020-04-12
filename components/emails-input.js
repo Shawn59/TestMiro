@@ -36,9 +36,13 @@ class EmailsInput {
     };
 
     setChipList = (sourceEmailList) => {
-        sourceEmailList.forEach(item => {
-            this.addChip(item)
-        });
+        if (sourceEmailList && Array.isArray(sourceEmailList)) {
+            sourceEmailList.forEach(item => {
+                this.addChip(item)
+            });
+        } else {
+            console.error("emailList - должен быть массивом");
+        }
     };
 
     // Добавляем емейл при нажатии клавишь "Enter" и ","
