@@ -4,15 +4,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-if (process.env.NODE_ENV !== 'production') {
-    console.log('Looks like we are in development mode!');
-}
-
 module.exports = {
     entry: [
         './app.js', // your app's entry point
     ],
-    /*    devtool: process.env.WEBPACK_DEVTOOL || 'eval-source-map',*/
+
     output: {
         publicPath: '/',
         path: path.join(__dirname, 'dist'),
@@ -70,10 +66,6 @@ module.exports = {
     },
 
     plugins: [
-        // выпилил лишние языки.
-        //new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|ru/),
-        //new webpack.ContextReplacementPlugin(/validatorjs[\/\\]src[\/\\]lang$/, /en|ru/),
-
         new HtmlWebpackPlugin({ // добавляет линки в шаблонный файл html
             template: './index.html',
             files: {

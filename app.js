@@ -11,6 +11,7 @@ let options = {
     onAddChip: handleAddChip,
     onDeleteChip: handleDeleteChip
 };
+
 let btn1 = document.getElementById('addEmail');
 let btn2 = document.getElementById('showCountEmail');
 let btn3 = document.getElementById('addNewEmailList');
